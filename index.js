@@ -1,10 +1,13 @@
-import express from "express";
+import express from 'express';
+import routes from './src/routes/appRoutes.js';
 
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-app.get("/", (req, res) =>{
-    res.send(`Your server is running in port=${port}`)
-});
+routes(app);
 
-app.listen(port, () => console.log("server is running"));
+app.get("/", (req, res) =>
+    res.send(`Your server is running in PORT=${PORT}`)
+);
+
+app.listen(PORT, () => console.log("server is running"));
