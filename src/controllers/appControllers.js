@@ -38,7 +38,7 @@ export const getUserById = (req, res) =>{
     });
 };
 
-// Get all users
+// Update a user
 export const updateUser = (req, res) =>{
 
     User.findOneAndUpdate({_id: req.params.id}, req.body, { new: true }, (err, user) =>{
@@ -46,6 +46,17 @@ export const updateUser = (req, res) =>{
             res.send(err);
         }
         res.json(user);
+    });
+};
+
+// Delete a user
+export const deleteUser = (req, res) =>{
+
+    User.remove({_id: req.params.id}, req.body, { new: true }, (err, user) =>{
+        if (err){
+            res.send(err);
+        }
+        res.json({ message: 'User deleted successfully'});
     });
 };
 

@@ -1,4 +1,4 @@
-import { createNewUser, getUserById, getUsers, updateUser } from '../controllers/appControllers.js';
+import { createNewUser, deleteUser, getUserById, getUsers, updateUser } from '../controllers/appControllers.js';
 
 const routes = (app) => {
 
@@ -17,14 +17,13 @@ const routes = (app) => {
     .post(createNewUser);
 
     app.route('/user/view/:id')
-    .get(getUserById)
-    .put((req, res) => res.send("Display a user"));
+    .get(getUserById);
 
     app.route('/user/update/:id')
     .put(updateUser);
 
     app.route('/user/delete/:id')
-    .delete((req, res) => res.send("Delete a user"));
+    .delete(deleteUser);
 
 }
 
