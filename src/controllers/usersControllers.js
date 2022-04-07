@@ -27,7 +27,7 @@ export const getUsers = (req, res) =>{
     });
 };
 
-// Get all users
+// Get a user by id
 export const getUserById = (req, res) =>{
 
     User.findById(req.params.id, (err, user) =>{
