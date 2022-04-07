@@ -52,7 +52,7 @@ export const updateUser = (req, res) =>{
 // Delete a user
 export const deleteUser = (req, res) =>{
 
-    User.remove({_id: req.params.id}, req.body, { new: true }, (err, user) =>{
+    User.remove({_id: req.params.id}, (err, user) =>{
         if (err){
             res.send(err);
         }
