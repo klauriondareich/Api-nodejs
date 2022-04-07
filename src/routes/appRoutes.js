@@ -29,7 +29,7 @@ const routes = (app) => {
 
     // Rover CRUD
 
-    app.route('/rover/all/:sort/:limit')
+    app.route('/rover/all/:sortBy/:sortType/:limit')
     .get((req, res, next) =>
     {
         // Middleware
