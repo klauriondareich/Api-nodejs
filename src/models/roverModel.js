@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-export const Roverchema = new Schema({
+export const RoverSchema = new Schema({
 
     name:{
         type: String,

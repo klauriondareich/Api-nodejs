@@ -1,5 +1,5 @@
-import { createNewUser, deleteUser, getUserById, getUsers, updateUser } from '../controllers/usersControllers.js';
-import { createNewRover, deleteRover, getRoverById, getRovers, updateRover } from '../controllers/roverControllers.js';
+import { createNewUser, deleteUser, getUserById, getUsers, updateUser } from '../controllers/usersController.js';
+import { createNewRover, deleteRover, getRoverById, getRovers, updateRover } from '../controllers/roverController.js';
 
 const routes = (app) => {
 
