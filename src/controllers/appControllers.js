@@ -38,4 +38,15 @@ export const getUserById = (req, res) =>{
     });
 };
 
+// Get all users
+export const updateUser = (req, res) =>{
+
+    User.findOneAndUpdate({_id: req.params.id}, req.body, { new: true }, (err, user) =>{
+        if (err){
+            res.send(err);
+        }
+        res.json(user);
+    });
+};
+
 
