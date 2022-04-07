@@ -1,16 +1,16 @@
 import mongoose from 'mongoose';
-import { UserSchema } from '../models/appModels.js';
+import { UsersSchema } from '../models/appModels.js';
 
-const User = mongoose.model('user', UserSchema);
+const User = mongoose.model('Users', UsersSchema);
 
 export const createNewUser = (req, res) =>{
 
-    let newUser = new UserSchema(req.body);
+    let newUser = new User(req.body);
 
     newUser.save((err, user) =>{
         if (err){
-            res.send(err)
+            res.send(err);
         }
-        res.json(user)
+        res.json(user);
     });
 }
