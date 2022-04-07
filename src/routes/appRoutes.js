@@ -29,7 +29,7 @@ const routes = (app) => {
 
     // Rover CRUD
 
-    app.route('/rover/all')
+    app.route('/rover/all/:sort/:limit')
     .get((req, res, next) =>
     {
         // Middleware
@@ -41,13 +41,13 @@ const routes = (app) => {
     app.route('/rover/create')
     .post(createNewRover);
 
-    app.route('/rover/view/:id')
+    app.route('/rover/view/:roverId')
     .get(getRoverById);
 
-    app.route('/rover/update/:id')
+    app.route('/rover/update/:roverId')
     .put(updateRover);
 
-    app.route('/rover/delete/:id')
+    app.route('/rover/delete/:roverId')
     .delete(deleteRover);
 
 }
