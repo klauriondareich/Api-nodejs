@@ -8,7 +8,14 @@ const PORT = 3000;
 
 // Database connection
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb+srv://root:<password>@cluster0.mflgi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+//mongoose.connect("mongodb+srv://root:<password>@cluster0.mflgi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://root:password@cluster0.mflgi.mongodb.net/Database?retryWrites=true&w=majority", 
+{useNewUrlParser: true, useUnifiedTopology: true}).then(() =>{
+    console.log("connected to DB")
+}).catch((error) =>{
+    console.log("error when connecting ", error)
+});
+
 
 // Body Parser config
 app.use(bodyParser.urlencoded({ extended: true }));
