@@ -9,14 +9,14 @@ export const RoverSchema = new Schema({
         required: "a rover must have a name"
     },
     launch_date:{
-        type: String,
+        type: Date,
         required: "a rover must have a launch_date"
     },
     construction_date:{
-        type: String,
+        type: Date,
         required: "a rover must have a construction date"
     },
-    constructor:{
+    constructor_name:{
         type: String,
         required: "a rover must have a constructor"
     },
