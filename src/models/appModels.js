@@ -2,12 +2,8 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-export const UserSchema = new Schema({
+export const UsersSchema = new Schema({
 
-    id:{
-        type: Number,
-        required: "a user must have an id"
-    },
     pseudo:{
         type: String,
         required: "a user must have a pseudo"
