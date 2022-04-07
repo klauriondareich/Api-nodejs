@@ -24,5 +24,8 @@ export const UserSchema = new Schema({
         type: Boolean,
         required: "user role must be defined"
     },
-    
+    created_at:{
+        type: Date,
+        default: Date.now
+    }
 })
