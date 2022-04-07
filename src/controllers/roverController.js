@@ -20,12 +20,31 @@ export const createNewRover = (req, res) =>{
 // Get all Rovers
 export const getRovers = (req, res) =>{
 
+    let sortType = (req.params.sortType).toLowerCase();
+    let sortOrder = {}; // No order specified
+
+    // sort by construction_date
+    if (req.params.sortBy == "constr_date"){
+
+        sortOrder = { construction_date: -1 }; // DESC order default
+        if (sortType == "asc") sortOrder = { construction_date: 1 };
+
+    }
+    else if (req.params.sortBy == "name"){
+
+        sortOrder = { name: -1 }; // DESC order default
+        if (sortType == "asc") sortOrder = { name: 1 };
+
+    }
+
+    let limit = req.params.limit;
+
     Rover.find({}, (err, rover) =>{
         if (err){
             res.send(err);
         }
         res.json(rover);
-    });
+    }).sort(sortOrder);
 };
 
 // Get a rover by id
