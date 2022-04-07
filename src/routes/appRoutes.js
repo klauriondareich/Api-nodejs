@@ -1,4 +1,4 @@
-import { createNewUser } from '../controllers/appControllers.js';
+import { createNewUser, getUsers } from '../controllers/appControllers.js';
 
 const routes = (app) => {
 
@@ -11,11 +11,7 @@ const routes = (app) => {
         console.log(`Request : ${req.originalUrl}`)
         console.log(`Request : ${req.method}`);
         next();
-    }, (req, res, next) =>{
-        res.send("GET request done!")
-    }
-        
-    );
+    }, getUsers);
 
     app.route('/user/create')
     .post(createNewUser);
