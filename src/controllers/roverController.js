@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import { RoverSchema } from '../models/roverModel.js';
 
-const Rover = mongoose.model('rovers', RoverSchema);
+const Rover = mongoose.model('Rovers', RoverSchema);
 
 // Add a new Rover 
+
 export const createNewRover = (req, res) =>{
 
     let newRover = new Rover(req.body);
