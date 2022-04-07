@@ -37,14 +37,14 @@ export const getRovers = (req, res) =>{
 
     }
 
-    let limit = req.params.limit;
+    let max = req.params.limit;
 
     Rover.find({}, (err, rover) =>{
         if (err){
             res.send(err);
         }
         res.json(rover);
-    }).sort(sortOrder);
+    }).limit(max).sort(sortOrder);
 };
 
 // Get a rover by id
