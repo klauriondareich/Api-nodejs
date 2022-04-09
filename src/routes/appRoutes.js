@@ -50,6 +50,30 @@ const routes = (app) => {
     app.route('/rover/delete/:roverId')
     .delete(deleteRover);
 
+
+    // Mission CRUD
+
+    app.route('/mission/all/:sortBy/:sortType/:limit')
+    .get((req, res, next) =>
+    {
+        // Middleware
+        console.log(`Request : ${req.originalUrl}`)
+        console.log(`Request : ${req.method}`);
+        next();
+    }, getRovers);
+
+    app.route('/mission/create')
+    .post(createNewmission);
+
+    app.route('/mission/view/:missionId')
+    .get(getMissionById);
+
+    app.route('/mission/update/:missionId')
+    .put(updateMission);
+
+    app.route('/mission/delete/:missionId')
+    .delete(deleteMission);
+
 }
 
 export default routes;
