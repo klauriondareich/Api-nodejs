@@ -1,10 +1,25 @@
 import mongoose from 'mongoose';
 import { UsersSchema } from '../models/userModel.js';
+import Joi from "joi"
 
 const User = mongoose.model('Users', UsersSchema);
 
+const schema = Joi.object({
+    
+    pseudo: Joi.string().required(),
+    email: Joi.string().
+        email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } }).required(),
+    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+    isAdmin:Joi.boolean().required()
+})
+
 // Add a new user 
 export const createNewUser = (req, res) =>{
+
+    const {result} = schema.validate(req.body);
+    
+
+    if (result) return res.status(400).send(result.error.details[0].message);
 
     let newUser = new User(req.body);
 
