@@ -15,6 +15,7 @@ const routes = (app) => {
         next();
     }, getUsers);
 
+    
     app.route('/user/create')
     .post(createNewUser);
 
