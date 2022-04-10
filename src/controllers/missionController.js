@@ -1,12 +1,25 @@
 import mongoose from 'mongoose';
 import { MissionSchema } from '../models/missionModel.js';
+import Joi from "joi"
 
 const Mission = mongoose.model('Missions', MissionSchema);
+
+const schema = Joi.object({
+    
+    country: Joi.string().required(),
+    start_date: Joi.date().required(),
+    end_date: Joi.date().required(),
+    rovers: Joi.array().required()
+})
 
 // Add a new Mission 
 
 export const createNewMission = (req, res) =>{
 
+    const {result} = schema.validate(req.body);
+
+    if (result) return res.status(400).send(result.error.details[0].message);
+    
     let newMission = new Mission(req.body);
 
     newMission.save((err, mission) =>{
