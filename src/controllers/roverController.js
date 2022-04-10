@@ -1,11 +1,25 @@
 import mongoose from 'mongoose';
 import { RoverSchema } from '../models/roverModel.js';
+import Joi from "joi"
 
 const Rover = mongoose.model('Rovers', RoverSchema);
+
+const schema = Joi.object({
+    
+    name: Joi.string().required(),
+    launch_date: Joi.date().required(),
+    construction_date: Joi.date().required(),
+    constructor_name: Joi.string().required(),
+    image: Joi.string().required()
+})
 
 // Add a new Rover 
 
 export const createNewRover = (req, res) =>{
+
+    const {result} = schema.validate(req.body);
+
+    if (result) return res.status(400).send(result.error.details[0].message);
 
     let newRover = new Rover(req.body);
 
