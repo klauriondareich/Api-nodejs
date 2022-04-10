@@ -1,5 +1,6 @@
 import { createNewUser, deleteUser, getUserById, getUsers, updateUser } from '../controllers/usersController.js';
 import { createNewRover, deleteRover, getRoverById, getRovers, updateRover } from '../controllers/roverController.js';
+import { createNewMission, deleteMission, getMissionById, getMissions, updateMission } from '../controllers/missionController.js';
 
 const routes = (app) => {
 
@@ -60,10 +61,10 @@ const routes = (app) => {
         console.log(`Request : ${req.originalUrl}`)
         console.log(`Request : ${req.method}`);
         next();
-    }, getRovers);
+    }, getMissions);
 
     app.route('/mission/create')
-    .post(createNewmission);
+    .post(createNewMission);
 
     app.route('/mission/view/:missionId')
     .get(getMissionById);
