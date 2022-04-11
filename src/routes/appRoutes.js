@@ -55,7 +55,7 @@ const routes = (app) => {
 
     // Mission CRUD
 
-    app.route('/mission/all/:sortBy/:sortType/:limit')
+    app.route('/mission/all/:sortBy/:sortType')
     .get((req, res, next) =>
     {
         // Middleware
