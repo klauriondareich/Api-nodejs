@@ -17,9 +17,8 @@ const schema = Joi.object({
 
 export const createNewRover = (req, res) =>{
 
-    const {result} = schema.validate(req.body);
-
-    if (result) return res.status(400).send(result.error.details[0].message);
+   const result = schema.validate(req.body);
+   if (result.error) return res.status(400).send(result.error.details[0].message);
 
     let newRover = new Rover(req.body);
 

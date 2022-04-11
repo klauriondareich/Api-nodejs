@@ -16,11 +16,9 @@ const schema = Joi.object({
 // Add a new user 
 export const createNewUser = (req, res) =>{
 
-    const {result} = schema.validate(req.body);
-    
-
-    if (result) return res.status(400).send(result.error.details[0].message);
-
+    const result = schema.validate(req.body);
+    if (result.error) return res.status(400).send(result.error.details[0].message);
+ 
     let newUser = new User(req.body);
 
     newUser.save((err, user) =>{
