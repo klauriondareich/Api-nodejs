@@ -6,6 +6,7 @@ const Mission = mongoose.model('Missions', MissionSchema);
 
 const schema = Joi.object({
     
+    name: Joi.string().required(),
     country: Joi.string().required(),
     start_date: Joi.date().required(),
     end_date: Joi.date().required(),
@@ -33,14 +34,20 @@ export const createNewMission = (req, res) =>{
 // Get all Missions
 export const getMissions = (req, res) =>{
 
-    let sortType = (req.params.sortType).toLowerCase();
+    let sortType = (req.params.sortType)?.toLowerCase();
     let sortOrder = {}; // No order specified
 
     // sort by construction_date
-    if (req.params.sortBy == "constr_date"){
+    if (req.params.sortBy == "start_date"){
 
-        sortOrder = { construction_date: -1 }; // DESC order default
-        if (sortType == "asc") sortOrder = { construction_date: 1 };
+        sortOrder = { start_date: -1 }; // DESC order default
+        if (sortType == "asc") sortOrder = { start_date: 1 };
+
+    }
+    else if (req.params.sortBy == "country"){
+
+        sortOrder = { country: -1 }; // DESC order default
+        if (sortType == "asc") sortOrder = { country: 1 };
 
     }
     else if (req.params.sortBy == "name"){
@@ -49,15 +56,14 @@ export const getMissions = (req, res) =>{
         if (sortType == "asc") sortOrder = { name: 1 };
 
     }
+    else return res.status(400).send("Error can't treat request");
 
-    let max = req.params.limit;
-
-    Rover.find({}, (err, rover) =>{
+    Mission.find({}, (err, mission) =>{
         if (err){
             res.send(err);
         }
-        res.json(rover);
-    }).limit(max).sort(sortOrder);
+        res.json(mission);
+    }).sort(sortOrder);
 };
 
 // Get a mission by id
