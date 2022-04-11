@@ -16,10 +16,10 @@ const schema = Joi.object({
 
 export const createNewMission = (req, res) =>{
 
-    const {result} = schema.validate(req.body);
+    const result = schema.validate(req.body);
+    if (result.error) return res.status(400).send(result.error.details[0].message);
+ 
 
-    if (result) return res.status(400).send(result.error.details[0].message);
-    
     let newMission = new Mission(req.body);
 
     newMission.save((err, mission) =>{
